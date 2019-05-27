@@ -283,6 +283,7 @@ func (ss *SqlStore) getEngine() (*xorm.Engine, error) {
 	engine.SetMaxOpenConns(ss.dbCfg.MaxOpenConn)
 	engine.SetMaxIdleConns(ss.dbCfg.MaxIdleConn)
 	engine.SetConnMaxLifetime(time.Second * time.Duration(ss.dbCfg.ConnMaxLifetime))
+	engine.SetSchema("grafana")
 
 	// configure sql logging
 	debugSql := ss.Cfg.Raw.Section("database").Key("log_queries").MustBool(false)
